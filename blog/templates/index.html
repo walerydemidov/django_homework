@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static "css/styles.css" %}"/>
+	<title>Anonimous Blog</title>
+</head>
+<body>
+	<div align="center">
+	<form method="POST" action="create/">
+		{% csrf_token %}
+	<h2>Введите текст сообщения:</h2>
+		<textarea rows=10 cols=50 name="name" ></textarea>
+	<p><input type="submit" name="Send">
+</form>
+{% if msg.count > 0 %}
+<h4>Предыдущие сообщения:</h4>
+<table>
+	<tr><td>id</th></td><td>Сообщение</td></tr>
+	{% for i in msg %}
+	<tr><td>{{i.id}}</td><td>{{i.name}}</td></tr>
+	{% endfor %}
+</table>
+{% endif %}
+
+</div>
+
+</body>
